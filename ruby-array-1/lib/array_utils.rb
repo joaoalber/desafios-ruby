@@ -25,7 +25,7 @@ class ArrayUtils
   end
 
   def self.ultimo(lista)
-    lista[lista.size-1]
+    lista[-1]
   end
 
 end
