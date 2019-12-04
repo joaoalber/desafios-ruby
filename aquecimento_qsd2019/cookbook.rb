@@ -1,15 +1,15 @@
 require_relative 'receita'
 ​
-def bem_vindo()
+def bem_vindo
   'Bem-vindo ao My Cookbook, sua rede social de receitas culinárias!'
 end
 ​
-def menu()
+def menu
   puts '[1] Cadastrar uma receita'
   puts '[2] Ver todas as receitas'
   puts '[3] Buscar receita'
   print 'Escolha uma opção: '
-  gets().to_i()
+  gets.to_i
 end
 
 def inserir_receita
@@ -28,9 +28,9 @@ def imprimir_receitas(receitas)
   puts 'Nenhuma receita cadastrada' if receitas.empty?
 end
 ​
-puts bem_vindo()
+puts bem_vindo
 ​
-opcao = menu()
+opcao = menu
 receitas = []
 while opcao != 3
   if opcao == 1
