@@ -21,7 +21,7 @@ end
 def buscar_receita(receita)
   print 'Digite a palavra que deseja buscar: '
   busca = gets.chomp
-  receita.each_with_index do |receitas|
+  receita.each do |receitas|
     if downclude(receitas.tipo, busca) || downclude(receitas.nome, busca)
       puts receitas
     else 
