@@ -37,12 +37,13 @@ def imprimir_receitas()
   # puts 'Nenhuma receita cadastrada' if receitas.empty?
 end
 
-def buscar_receitas(receitas)
+def buscar_receitas()
   print 'Digite uma palavra para procurar: '
   busca = gets.chomp
-  receitas_encontradas = Receita.busca(receitas, busca)
-  puts receitas_encontradas
-  puts 'Nenhuma receita encontrada' if receitas_encontradas.empty?
+  Receita.busca(busca)
+  # receitas_encontradas = Receita.busca(busca)
+  # puts receitas_encontradas
+  # puts 'Nenhuma receita encontrada' if receitas_encontradas.empty?
 end
 
 puts bem_vindo()
@@ -56,7 +57,7 @@ while opcao != SAIR
   elsif opcao == VISUALIZAR_RECEITA
     imprimir_receitas
   elsif opcao == PESQUISAR_RECEITA
-    buscar_receitas(receitas)
+    buscar_receitas
   else
     puts 'Opção inválida'
   end

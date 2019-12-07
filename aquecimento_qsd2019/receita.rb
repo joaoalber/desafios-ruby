@@ -24,15 +24,19 @@ class Receita
     nome.downcase.include?(termo)
   end
 
-  def self.busca(receitas, termo)
-    receitas.select do |receita|
-      receita.include?(termo)
-    end
+  def self.busca(termo)
+    busca = $db.execute("SELECT * FROM receitas WHERE nome LIKE '#{termo}%'")
+    puts "Não encontrado" if !busca
+    puts busca
+    # receitas.select do |receita|
+    #   receita.include?(termo)
+    # end
   end
 
   def self.create(nome, tipo)
     $db.execute("INSERT INTO receitas(nome,tipo) VALUES(?,?)", nome, tipo)
   end
+  
 
   def self.read()
     $db.execute("SELECT * FROM receitas") do |row|
