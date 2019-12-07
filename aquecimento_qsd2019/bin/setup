@@ -13,10 +13,10 @@ db.execute <<-SQL
 SQL
 db.close
 
-db.execute <<-SQL, *nome, tipo
-  insert into recipes (nome, tipo) values (?, ?)
-SQL
+# db.execute <<-SQL, *nome, tipo
+#  insert into receitas (nome, tipo) values (?, ?)
+# SQL
 
-db.execute2 <<-SQL
-  select * from recipes
-SQL
+# db.execute2 <<-SQL
+#  select * from receitas
+# SQL

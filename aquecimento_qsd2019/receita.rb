@@ -1,4 +1,7 @@
 require 'json'
+require 'sqlite3'
+
+$db = SQLite3::Database.open('cookbook.db')
 
 class Receita
   attr_accessor :nome, :tipo
@@ -27,17 +30,27 @@ class Receita
     end
   end
 
-  def self.save(receitas)
-    File.open('receitas.json', 'w') do |file|
-      file.puts receitas.to_json
-    end
+  def self.create(nome, tipo)
+    $db.execute("INSERT INTO receitas(nome,tipo) VALUES(?,?)", nome, tipo)
   end
 
-  def self.load
-    json = File.read('receitas.json')
-    receitas_hash = JSON.parse(json, symbolize_names: true)
-    receitas_hash.map do |hash|
-      Receita.new(hash)
+  def self.read()
+    $db.execute("SELECT * FROM receitas") do |row|
+      puts row
     end
-  end
+  end 
+
+  # def self.save(receitas)
+  #   File.open('receitas.json', 'w') do |file|
+  #     file.puts receitas.to_json
+  #   end
+  # end
+
+  # def self.load
+  #   json = File.read('receitas.json')
+  #   receitas_hash = JSON.parse(json, symbolize_names: true)
+  #   receitas_hash.map do |hash|
+  #     Receita.new(hash)
+  #   end
+  # end
 end

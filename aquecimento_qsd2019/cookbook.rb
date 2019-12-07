@@ -25,14 +25,16 @@ def inserir_receita
   print 'Digite o tipo da sua receita: '
   tipo = gets.chomp
   puts "Receita de #{nome} do tipo #{tipo} cadastrada com sucesso!"
-  Receita.new(tipo: tipo, nome: nome)
+  # Receita.new(tipo: tipo, nome: nome)
+  Receita.create(nome, tipo)
 end
 
-def imprimir_receitas(receitas)
-  receitas.each_with_index do |receita, index|
-    puts "##{index + 1} - #{receita}"
-  end
-  puts 'Nenhuma receita cadastrada' if receitas.empty?
+def imprimir_receitas()
+  Receita.read
+  # receitas.each_with_index do |receita, index|
+  #   puts "##{index + 1} - #{receita}"
+  # end
+  # puts 'Nenhuma receita cadastrada' if receitas.empty?
 end
 
 def buscar_receitas(receitas)
@@ -46,13 +48,13 @@ end
 puts bem_vindo()
 
 opcao = menu()
-receitas = Receita.load
+# receitas = Receita.load
 
 while opcao != SAIR
   if opcao == INSERIR_RECEITA
-    receitas << inserir_receita
+    inserir_receita
   elsif opcao == VISUALIZAR_RECEITA
-    imprimir_receitas(receitas)
+    imprimir_receitas
   elsif opcao == PESQUISAR_RECEITA
     buscar_receitas(receitas)
   else
@@ -62,5 +64,5 @@ while opcao != SAIR
   opcao = menu
 end
 
-Receita.save(receitas)
+# Receita.save(receitas)
 puts 'Obrigado por usar o Cookbook'
